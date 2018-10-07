@@ -1,19 +1,14 @@
 <?php
 
-class Staff extends DbTable
+class Users extends DbTable
 {
     public $Id;
-    public $LocationId;
+    public $Username;
     public $Firstname;
     public $Infix;
     public $Surname;
-    public $Telephone;
     public $Email;
-    public $DateOfBirth;
-    public $Street;
-    public $HouseNumber;
-    public $City;
-    public $PostalCode;
+    public $Password;
 
     public function __construct(Array $properties=array()){
         parent::__construct($properties);
