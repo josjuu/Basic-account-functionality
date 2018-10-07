@@ -1,6 +1,7 @@
 <html>
 <head>
-    <link rel="stylesheet" href="../Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
@@ -39,7 +40,8 @@
                         </div>
                         <div class="form-group">
                             <label for="register-password-repeat">Password again</label>
-                            <input type="password" class="form-control" id="register-password-repeat" placeholder="Password">
+                            <input type="password" class="form-control" id="register-password-repeat"
+                                   placeholder="Password">
                         </div>
                         <button id="register-cancel" type="button" class="btn">cancel</button>
                         <button id="register-submit" type="button" class="btn btn-primary">Save</button>
@@ -55,7 +57,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
-<script src="../Assets/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 <script src="../Assets/js/Account.js"></script>
 </body>
 </html>
