@@ -3,7 +3,7 @@ include_once '../../Classes/Initializer.php';
 
 if (isset($_GET["id"])) {
     try {
-        $data = Db::getSingleRecord("staff", "Staff", $_GET["id"]);
+        $data = Db::getSingleRecord("locations", "Users", $_GET["id"]);
     } catch (Exception $e) {
         $response = ResponseJson::createFailedResponseMessage($e->getMessage());
     }
@@ -15,7 +15,7 @@ if (isset($_GET["id"])) {
     echo $response;
 } else {
     try {
-        $data = Db::getAllRecords("staff", "Staff");
+        $data = Db::getAllRecords("locations", "Users");
     } catch (Exception $e) {
         $response = ResponseJson::createFailedResponseMessage($e->getMessage());
     }

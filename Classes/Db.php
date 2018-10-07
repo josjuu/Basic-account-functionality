@@ -20,7 +20,7 @@ class Db
      */
     public static function getConnection()
     {
-        $dsn = "mysql:dbname=josmutter_movies;host=localhost";
+        $dsn = "mysql:dbname=examen_voorbereiding;host=localhost";
         $username = "root";
         $password = "";
 
