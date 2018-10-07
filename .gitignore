@@ -84,5 +84,5 @@ fabric.properties
 # End of https://www.gitignore.io/api/phpstorm
 
 .idea/*
-Assets/css/*
-Assets/js/*
+Assets/css/
+Assets/js/
