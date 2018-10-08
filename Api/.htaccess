@@ -1,4 +1,4 @@
-RewriteEngine on
-
-RewriteRule ^Accounts?$ Accounts/index.php
-RewriteRule ^Accounts/([0-9]+) Accounts/index.php?id=$1
+#RewriteEngine on
+#
+#RewriteRule ^Accounts?$ Accounts/index.php
+#RewriteRule ^Accounts/([0-9]+) Accounts/index.php?id=$1

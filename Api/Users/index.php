@@ -13,6 +13,8 @@ if (isset($_GET["id"])) {
     }
 
     echo $response;
+} else if (isset($_POST['register-submit'])) {
+    echo ResponseJson::createResponseMessage("records", $_POST);
 } else {
     try {
         $data = Db::getAllRecords("locations", "Users");
