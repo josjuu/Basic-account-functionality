@@ -218,4 +218,47 @@ class Db
             echo $e->__toString();
         }
     }
+
+    /**
+     * Deletes a single record out of the given table.
+     *
+     * @param $tableName
+     *      The name of the table of which you want to delete the record.
+     * @param $id
+     *      The id of the record you want to delete.
+     * @throws ConnectionFailedException
+     *      Throws an exception if the connection failed.
+     */
+    public static function deleteRecord($tableName, $id)
+    {
+        $db = self::getConnection();
+
+        $stmt = $db->prepare("DELETE FROM $tableName WHERE Id= ?");
+        $stmt->bindParam(1, $id);
+        $stmt->execute();
+
+        $stmt = null;
+        $db = null;
+    }
+
+    /**
+     * Deletes multiple records out of the given table.
+     *
+     * @param $tableName
+     *      The if of the record you want to delete.
+     * @param $ids
+     *      An array of ids of which you want to delete.
+     * @throws ConnectionFailedException
+     *      Throws an exception if the connection failed.
+     */
+    public static function deleteRecords($tableName, $ids)
+    {
+        try {
+            foreach ($ids as $id) {
+                self::deleteRecord($tableName, $id);
+            }
+        } catch (ConnectionFailedException $e) {
+            throw $e;
+        }
+    }
 }
