@@ -1,6 +1,6 @@
 <?php
 
-class Users extends DbTable
+class Users
 {
     public $Id;
     public $Username;
@@ -9,8 +9,4 @@ class Users extends DbTable
     public $Surname;
     public $Email;
     public $Password;
-
-    public function __construct(Array $properties=array()){
-        parent::__construct($properties);
-    }
 }
