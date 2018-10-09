@@ -1,7 +1,9 @@
 <?php
 include_once '../../Classes/Initializer.php';
 
-if (isset($_GET["id"])) {
+if (isset($_POST['register-submit'])) {
+    echo ResponseJson::createResponseMessage("records", $_POST);
+} else if (isset($_GET["id"])) {
     try {
         $data = Db::getSingleRecord("locations", "Users", $_GET["id"]);
     } catch (Exception $e) {
@@ -13,8 +15,6 @@ if (isset($_GET["id"])) {
     }
 
     echo $response;
-} else if (isset($_POST['register-submit'])) {
-    echo ResponseJson::createResponseMessage("records", $_POST);
 } else {
     try {
         $data = Db::getAllRecords("locations", "Users");
