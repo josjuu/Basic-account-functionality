@@ -1,9 +1,22 @@
 <?php
 include_once '../../Classes/Initializer.php';
 
-if (isset($_GET["id"])) {
+
+if (isset($_POST['register-submit'])) {
     try {
-        $data = Db::getSingleRecord("locations", "Users", $_GET["id"]);
+        AccountProcessor::register($_POST["register-username"], $_POST["register-email"], $_POST["register-firstname"], $_POST["register-infix"], $_POST["register-surname"], $_POST["register-password"], $_POST["register-password-repeat"]);
+    } catch (Exception $e) {
+        echo ResponseJson::createFailedResponseMessage($e->getMessage());
+    }
+} else if (isset($_POST['login-submit'])) {
+    try {
+        AccountProcessor::login($_POST["login-email"], $_POST["login-password"]);
+    } catch (Exception $e) {
+        echo ResponseJson::createFailedResponseMessage($e->getMessage());
+    }
+} else if (isset($_GET["id"])) {
+    try {
+        $data = Db::getSingleRecord("account", "User", $_GET["id"]);
     } catch (Exception $e) {
         $response = ResponseJson::createFailedResponseMessage($e->getMessage());
     }
@@ -15,7 +28,7 @@ if (isset($_GET["id"])) {
     echo $response;
 } else {
     try {
-        $data = Db::getAllRecords("locations", "Users");
+        $data = Db::getAllRecords("account", "User");
     } catch (Exception $e) {
         $response = ResponseJson::createFailedResponseMessage($e->getMessage());
     }
