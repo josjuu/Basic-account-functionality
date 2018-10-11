@@ -49,3 +49,14 @@ class NullException extends Exception
         return $message;
     }
 }
+
+class PasswordException extends Exception
+{
+    public function __toString()
+    {
+        $message = "<b>Warning:</b> $this->message.<br>";
+        $message .= "This exception occurred at $this->file:$this->line.<br><br>";
+
+        return $message;
+    }
+}

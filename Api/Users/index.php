@@ -2,41 +2,34 @@
 include_once '../../Classes/Initializer.php';
 
 
-//if (isset($_POST['register-submit'])) {
-//
-////    AccountProcessor::register("1","2","3","4","5","6","7");
-//} else if (isset($_GET["id"])) {
-//    try {
-//        $data = Db::getSingleRecord("locations", "Users", $_GET["id"]);
-//    } catch (Exception $e) {
-//        $response = ResponseJson::createFailedResponseMessage($e->getMessage());
-//    }
-//
-//    if (!isset($response)) {
-//        $response = ResponseJson::createResponseMessage("record", $data);
-//    }
-//
-//    echo $response;
-//} else {
-//    try {
-//        $data = Db::getAllRecords("users", "User");
-//    } catch (Exception $e) {
-//        $response = ResponseJson::createFailedResponseMessage($e->getMessage());
-//    }
-//
-//    if (!isset($response)) {
-//        $response = ResponseJson::createResponseMessage("records", $data);
-//    }
-//
-//    echo $response;
-//}
+if (isset($_POST['register-submit'])) {
+    try {
+        AccountProcessor::register($_POST["register-email"], $_POST["register-username"], $_POST["register-firstname"], $_POST["register-infix"], $_POST["register-surname"], $_POST["register-password"], $_POST["register-password-repeat"]);
+    } catch (Exception $e) {
+        echo ResponseJson::createFailedResponseMessage($e->getMessage());
+    }
+} else if (isset($_GET["id"])) {
+    try {
+        $data = Db::getSingleRecord("locations", "Users", $_GET["id"]);
+    } catch (Exception $e) {
+        $response = ResponseJson::createFailedResponseMessage($e->getMessage());
+    }
 
-try {
-    $f = new ReflectionMethod('AccountProcessor', 'register');
-} catch (ReflectionException $e) {
+    if (!isset($response)) {
+        $response = ResponseJson::createResponseMessage("record", $data);
+    }
+
+    echo $response;
+} else {
+    try {
+        $data = Db::getAllRecords("users", "User");
+    } catch (Exception $e) {
+        $response = ResponseJson::createFailedResponseMessage($e->getMessage());
+    }
+
+    if (!isset($response)) {
+        $response = ResponseJson::createResponseMessage("records", $data);
+    }
+
+    echo $response;
 }
-$result = array();
-foreach ($f-> as $param) {
-    $result[] = $param->name;
-}
-print_r( $result);
