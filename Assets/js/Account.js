@@ -23,10 +23,19 @@ $("#form").submit(function (event) {
 
             $("#alert").append("<div class=\"alert alert-" + type + "\"><b>" + type + ":</b> " + response["message"] + "</div>")
         } else {
+            window.location.replace("index.php");
             //TODO: Redirect
         }
     }).always(function () {
         $inputs.prop("disabled", false);
     });
 
+});
+
+$("#account-change-password").change(function () {
+    if ($("#account-change-password").is(":checked")) {
+        $("#password").show();
+    } else {
+        $("#password").hide();
+    }
 });

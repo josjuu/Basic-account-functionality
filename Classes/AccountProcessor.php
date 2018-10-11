@@ -70,8 +70,9 @@ class AccountProcessor
      * @param $password
      *      The password of the user.
      * @throws ConnectionFailedException
-     *      Throws an exception if it fails to
+     *      Throws an exception if it fails to connect to the database.
      * @throws NotSetException
+     *      Throws an exception if the required fields are not set.
      */
     public static function login($email, $password)
     {
