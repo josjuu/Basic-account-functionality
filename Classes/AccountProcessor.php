@@ -9,6 +9,30 @@ class AccountProcessor
     public static $tableName = "account";
     public static $className = "User";
 
+    /**
+     * Registers a new user to the database.
+     *
+     * @param $username
+     *      The username of the new user.
+     * @param $email
+     *      The email of the new user.
+     * @param $firstname
+     *      The firstname of the new user.
+     * @param $infix
+     *      The infix of the new user.
+     * @param $surname
+     *      The surname of the new user.
+     * @param $password
+     *      The password of the new user.
+     * @param $passwordAgain
+     *      The repeated version of password
+     * @throws NotSetException
+     *      Throws an exception if an important field is not set or is null.
+     * @throws ConnectionFailedException
+     *      Throws an exception if the connection failed.
+     * @throws PasswordException
+     *      Throws an exception if the password are not the same.
+     */
     public static function register($username, $email, $firstname, $infix, $surname, $password, $passwordAgain)
     {
         $requiredFields = Array("username", "email", "password");
@@ -38,6 +62,17 @@ class AccountProcessor
         }
     }
 
+    /**
+     * Checks if the users information is correct.
+     *
+     * @param $email
+     *      The email of the user.
+     * @param $password
+     *      The password of the user.
+     * @throws ConnectionFailedException
+     *      Throws an exception if it fails to
+     * @throws NotSetException
+     */
     public static function login($email, $password)
     {
         $requiredFields = Array("email", "password");
@@ -50,12 +85,15 @@ class AccountProcessor
 
         try {
             $dbUser = Db::getSingleRecordByField(self::$tableName, self::$className, "Email", $email);
-        } catch (Exception $e) {
+        } catch (ConnectionFailedException $e) {
             throw $e;
+        } catch (NullException $e) {
+            throw new Exception("Email/password is incorrect.");
         }
 
+
         if (!password_verify($password, $dbUser["Password"])) {
-            throw new PasswordException("Password was incorrect.");
+            throw new Exception("Email/password is incorrect.");
         }
     }
 }
