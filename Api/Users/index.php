@@ -8,6 +8,8 @@ if (isset($_POST['register-submit'])) {
     } catch (Exception $e) {
         echo ResponseJson::createFailedResponseMessage($e->getMessage());
     }
+} else if (isset($_POST['login-submit'])) {
+    AccountProcessor::register($_POST["register-email"], $_POST["register-username"], $_POST["register-firstname"], $_POST["register-infix"], $_POST["register-surname"], $_POST["register-password"], $_POST["register-password-repeat"]);
 } else if (isset($_GET["id"])) {
     try {
         $data = Db::getSingleRecord("locations", "Users", $_GET["id"]);

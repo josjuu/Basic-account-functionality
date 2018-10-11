@@ -8,11 +8,13 @@
                     <form id="form">
                         <div class="form-group">
                             <label for="login-email">Email address</label>
-                            <input type="email" class="form-control" name="login-email" placeholder="Enter email">
+                            <input type="email" class="form-control" name="login-email" placeholder="Enter email"
+                                   required>
                         </div>
                         <div class="form-group">
                             <label for="login-password">Password</label>
-                            <input type="password" class="form-control" name="login-password" placeholder="Password">
+                            <input type="password" class="form-control" name="login-password" placeholder="Password"
+                                   required>
                         </div>
                         <div id="alert"></div>
                         <input type="hidden" name="login-submit" value="1">
