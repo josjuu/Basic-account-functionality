@@ -1,6 +1,6 @@
 var request;
 
-$("#register").submit(function(event){
+$("#form").submit(function (event) {
     event.preventDefault();
     if (request) {
         request.abort();
@@ -15,8 +15,16 @@ $("#register").submit(function(event){
         url: "../Api/Users/index.php",
         type: "post",
         data: serializedData
-    }).done(function (response){
-        console.log(response);
+    }).done(function (response) {
+        if (response) {
+            $("#alert").empty();
+            response = $.parseJSON(response);
+            var type = response["status"] === "FAILED" ? "Warning" : "Danger";
+
+            $("#alert").append("<div class=\"alert alert-" + type + "\"><b>" + type + ":</b> " + response["message"] + "</div>")
+        } else {
+            //TODO: Redirect
+        }
     }).always(function () {
         $inputs.prop("disabled", false);
     });

@@ -5,15 +5,17 @@
             <div class="card">
                 <div class="card-header">Login</div>
                 <div class="card-body">
-                    <form>
+                    <form id="form">
                         <div class="form-group">
                             <label for="login-email">Email address</label>
-                            <input type="email" class="form-control" id="login-email" placeholder="Enter email">
+                            <input type="email" class="form-control" name="login-email" placeholder="Enter email">
                         </div>
                         <div class="form-group">
                             <label for="login-password">Password</label>
-                            <input type="password" class="form-control" id="login-password" placeholder="Password">
+                            <input type="password" class="form-control" name="login-password" placeholder="Password">
                         </div>
+                        <div id="alert"></div>
+                        <input type="hidden" name="login-submit" value="1">
                         <button id="login-submit" type="button" class="btn btn-primary">Submit</button>
                     </form>
                 </div>

@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-header">Register</div>
                 <div class="card-body">
-                    <form id="register">
+                    <form id="form">
                         <div class="form-group">
                             <label for="register-email">Email address</label>
                             <input type="email" class="form-control" name="register-email" placeholder="Enter email" required>
@@ -37,6 +37,7 @@
                             <input type="password" class="form-control" name="register-password-repeat"
                                    placeholder="Password" required>
                         </div>
+                        <div id="alert"></div>
                         <input type="hidden" name="register-submit" value="1">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
