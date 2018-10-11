@@ -6,8 +6,9 @@
 
 class AccountProcessor
 {
-    public static function register()
+    public static function register($username, $email, $firstname, $infix, $lastname, $password, $passwordAgain)
     {
-        $requiredFields = Array("Username", "Email", "Password");
+        $requiredFields = Array("username", "email", "password");
+        echo $$username;
     }
 }
