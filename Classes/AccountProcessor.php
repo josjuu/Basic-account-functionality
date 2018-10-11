@@ -97,6 +97,54 @@ class AccountProcessor
             throw new Exception("Email/password is incorrect.");
         }
     }
+
+    /**
+     * Updates the users account.
+     * TODO: Add change password
+     *
+     * @param $id
+     *      The id of the user.
+     * @param $email
+     *      The new email of the user.
+     * @param $username
+     *      The new username of the user.
+     * @param $firstname
+     *      The new firstname of the user.
+     * @param $infix
+     *      The new infix of the user.
+     * @param $surname
+     *      The new surname of the user.
+     * @throws Exception
+     *      Throws an exception if anything goes wrong.
+     */
+    public static function account($id, $email, $username, $firstname, $infix, $surname)
+    {
+        $requiredFields = Array("email", "username", "id");
+
+        foreach ($requiredFields as $requiredField) {
+            if (IsNullOrEmptyString($$requiredField)) {
+                throw new NotSetException("One of the required fields are not set.");
+            }
+        }
+
+        try {
+            $user = Db::getSingleRecord(self::$tableName, self::$className, $id);
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+        $user["Email"] = $email;
+        $user["Username"] = $username;
+        $user["Firstname"] = $firstname;
+        $user["Infix"] = $infix;
+        $user["Surname"] = $surname;
+
+        try {
+            Db::updateRecord(self::$tableName, (object)$user);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
 
 function IsNullOrEmptyString($str)

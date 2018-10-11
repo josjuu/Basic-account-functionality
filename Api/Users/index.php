@@ -14,6 +14,12 @@ if (isset($_POST['register-submit'])) {
     } catch (Exception $e) {
         echo ResponseJson::createFailedResponseMessage($e->getMessage());
     }
+} else if (isset($_POST['account-submit'])) {
+    try {
+        AccountProcessor::account($_POST["account-id"], $_POST["account-email"], $_POST["account-username"], $_POST["account-firstname"], $_POST["account-infix"], $_POST["account-surname"]);
+    } catch (Exception $e) {
+        echo ResponseJson::createFailedResponseMessage($e->getMessage());
+    }
 } else if (isset($_GET["id"])) {
     try {
         $data = Db::getSingleRecord("account", "User", $_GET["id"]);

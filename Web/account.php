@@ -20,12 +20,12 @@ $user = $response["record"];
                         <div class="form-group">
                             <label for="account-email">Email address</label>
                             <input type="email" class="form-control" name="account-email" placeholder="Enter email"
-                                   value="<?= $user["Email"] ?>">
+                                   value="<?= $user["Email"] ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="account-username">Username</label>
                             <input type="text" class="form-control" name="account-username" placeholder="Username"
-                                   value="<?= $user["Username"] ?>">
+                                   value="<?= $user["Username"] ?>" required>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-5">
@@ -64,7 +64,7 @@ $user = $response["record"];
                             </div>
                         </div>
                         <div id="alert"></div>
-                        <input type="hidden" name="account-id">
+                        <input type="hidden" name="account-id" value="<?= $user["Id"] ?>">
                         <input type="hidden" name="account-submit" value="1">
                         <button id="register-cancel" type="button" class="btn">cancel</button>
                         <button id="register-submit" type="submit" class="btn btn-primary">Save</button>
