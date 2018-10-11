@@ -6,6 +6,9 @@
 
 class AccountProcessor
 {
+    public static $tableName = "account";
+    public static $className = "User";
+
     public static function register($username, $email, $firstname, $infix, $surname, $password, $passwordAgain)
     {
         $requiredFields = Array("username", "email", "password");
@@ -20,7 +23,7 @@ class AccountProcessor
             throw new PasswordException("The password and repeat password are not the same.");
         }
 
-        $user = new User();
+        $user = new self::$className();
         $user->Username = $username;
         $user->Email = $email;
         $user->Firstname = $firstname;
@@ -29,9 +32,30 @@ class AccountProcessor
         $user->Password = password_hash($password, PASSWORD_BCRYPT);
 
         try {
-            Db::addRecord("account", $user);
+            Db::addRecord(self::$tableName, $user);
         } catch (ConnectionFailedException $e) {
             throw $e;
+        }
+    }
+
+    public static function login($email, $password)
+    {
+        $requiredFields = Array("email", "password");
+
+        foreach ($requiredFields as $requiredField) {
+            if (IsNullOrEmptyString($$requiredField)) {
+                throw new NotSetException("One of the required fields are not set.");
+            }
+        }
+
+        try {
+            $dbUser = Db::getSingleRecordByField(self::$tableName, self::$className, "Email", $email);
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+        if (!password_verify($password, $dbUser["Password"])) {
+            throw new PasswordException("Password was incorrect.");
         }
     }
 }

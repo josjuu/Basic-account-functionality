@@ -18,7 +18,7 @@
                         </div>
                         <div id="alert"></div>
                         <input type="hidden" name="login-submit" value="1">
-                        <button id="login-submit" type="button" class="btn btn-primary">Submit</button>
+                        <button id="login-submit" type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
