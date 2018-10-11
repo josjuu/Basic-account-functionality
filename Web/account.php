@@ -1,32 +1,47 @@
-<?php include_once '../Assets/layouts/header.html' ?>
+<?php
+include_once '../Assets/layouts/header.html';
+$response = file_get_contents('http://' . $_SERVER['HTTP_HOST'] . '/Basic-account-functionality/api/Accounts/' . $_GET["id"]);
+$response = json_decode($response, true);
+
+if ($response["status"] != "OK") {
+    //TODO: Improve
+    die("User not found");
+}
+
+$user = $response["record"];
+?>
     <div class="row">
         <div class="col-md-8 mx-auto">
             <br>
             <div class="card">
                 <div class="card-header">Account</div>
                 <div class="card-body">
-                    <form>
+                    <form id="form">
                         <div class="form-group">
                             <label for="account-email">Email address</label>
-                            <input type="email" class="form-control" name="account-rmail" placeholder="Enter email">
+                            <input type="email" class="form-control" name="account-email" placeholder="Enter email"
+                                   value="<?= $user["Email"] ?>">
                         </div>
                         <div class="form-group">
                             <label for="account-username">Username</label>
-                            <input type="text" class="form-control" name="account-username" placeholder="Username">
+                            <input type="text" class="form-control" name="account-username" placeholder="Username"
+                                   value="<?= $user["Username"] ?>">
                         </div>
                         <div class="row">
                             <div class="form-group col-md-5">
                                 <label for="account-firstname">Firstname</label>
                                 <input type="text" class="form-control" name="account-firstname"
-                                       placeholder="Firstname">
+                                       placeholder="Firstname" value="<?= $user["Firstname"] ?>">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="account-infix">Infix</label>
-                                <input type="text" class="form-control" name="account-infix" placeholder="Infix">
+                                <input type="text" class="form-control" name="account-infix" placeholder="Infix"
+                                       value="<?= $user["Infix"] ?>">
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="account-surname">Surname</label>
-                                <input type="text" class="form-control" name="account-surname" placeholder="Surname">
+                                <input type="text" class="form-control" name="account-surname" placeholder="Surname"
+                                       value="<?= $user["Surname"] ?>">
                             </div>
                         </div>
                         <div class="form-group">
@@ -40,12 +55,12 @@
                             <div class="form-group">
                                 <label for="account-password">Password</label>
                                 <input type="password" class="form-control" name="account-password"
-                                       placeholder="Password">
+                                       placeholder="Password" value="********">
                             </div>
                             <div class="form-group">
                                 <label for="account-password-repeat">Password again</label>
                                 <input type="password" class="form-control" name="account-password-repeat"
-                                       placeholder="Password">
+                                       placeholder="Password" value="********">
                             </div>
                         </div>
                         <div id="alert"></div>
