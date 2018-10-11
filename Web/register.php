@@ -1,4 +1,4 @@
-<?php include_once '../Assets/layouts/header.php' ?>
+<?php include_once '../Assets/layouts/header.html' ?>
     <div class="row">
         <div class="col-md-8 mx-auto">
             <br>
@@ -45,4 +45,4 @@
             </div>
         </div>
     </div>
-<?php include_once '../Assets/layouts/footer.php' ?>
+<?php include_once '../Assets/layouts/footer.html' ?>
